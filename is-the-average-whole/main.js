@@ -1,6 +1,6 @@
 function isTheAverageWhole(numbersArray) {
   var sum = 0;
-  for (i = 0; i < numbersArray.length; i++) {
+  for (var i = 0; i < numbersArray.length; i++) {
     sum += numbersArray[i];
   };
   if (sum % numbersArray.length === 0) {
