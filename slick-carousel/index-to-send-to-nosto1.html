@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosto Coding Exercise</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+  <link rel="stylesheet" crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+    .nosto-container {
+      width: 85%;
+    }
+    h2 {
+      font-weight: 700;
+      color: rgb(81, 81, 81);
+      border-bottom: 2px solid rgb(187, 187, 187);
+      padding-bottom: 20px;
+    }
+    p {
+      color: rgb(81, 81, 81);
+    }
+    .slick-prev:before {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      content: "\f104";
+      font-size: 2rem;
+    }
+    .slick-next:before {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      content: "\f105";
+      font-size: 2rem;
+    }
+    .slick-prev:before, .slick-next:before {
+      opacity: 1;
+      color: black;
+    }
+    .slick-prev, .slick-next {
+      top: 35%;
+    }
+    .slick-slide {
+      outline: none
+    }
+    .productDiv {
+      position: relative;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: center;
+    }
+    img {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    button {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background-color: red;
+      color: white;
+      border: none;
+      font-size: 16px;
+      padding: 5px 10px;
+    }
+    .productName {
+      margin-bottom: 0.35rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .currentPrice, .salePrice {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 0;
+    }
+    .salePrice {
+      color: red;
+      margin-bottom: 0;
+    }
+    .oldPrice {
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+    @media only screen and (max-width: 810px) {
+      .slick-prev, .slick-next {
+        top: 30%;
+      }
+    }
+    @media only screen and (max-width: 570px) {
+      .slick-prev, .slick-next {
+        top: 25%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nosto-container">
+    <h2>You may like these...</h2>
+    <div class="items">
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script type="text/javascript">
+    var json = {
+      "items": [{
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/172075/large.jpg",
+          "productname": "New Balance MRL247",
+          "productlistprice": "109EUR",
+          "discounted": "false",
+          "productprice": "",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/171055/large.jpg",
+          "productname": "Puma Clyde Coogi FS",
+          "productlistprice": "99EUR",
+          "discounted": "false",
+          "productprice": "",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/171049/large.jpg",
+          "productname": "Puma Clyde Coogi",
+          "productlistprice": "229EUR",
+          "discounted": "true",
+          "productprice": "179EUR",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/172101/large.jpg",
+          "productname": "Nike Sportswear Air Foamposite Pro",
+          "productlistprice": "219EUR",
+          "discounted": "false",
+          "productprice": "",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/172090/large.jpg",
+          "productname": "Converse Chuck 70s Slip x Missoni",
+          "productlistprice": "199EUR",
+          "discounted": "false",
+          "productprice": "",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/172062/large.jpg",
+          "productname": "adidas Originals NMD_R2 PK",
+          "productlistprice": "169EUR",
+          "discounted": "true",
+          "productprice": "99EUR",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/172036/large.jpg",
+          "productname": "Stussy Bleached Out Cord Jacket",
+          "productlistprice": "147EUR",
+          "discounted": "false",
+          "productprice": "",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/171946/large.jpg",
+          "productname": "Nike Sportswear Wmns Blazer Low LX",
+          "productlistprice": "99EUR",
+          "discounted": "false",
+          "productprice": "",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/171979/large.jpg",
+          "productname": "Billionaire Boys Club Leopard Arch Logo Pullover Hood",
+          "productlistprice": "159 EUR",
+          "discounted": "false",
+          "productprice": "",
+        },
+        {
+          "imgsrc": "https://www.sneakersnstuff.com/en/images/171939/large.jpg",
+          "productname": "NikeLab ACG Cargo Pant",
+          "productlistprice": "285EUR",
+          "discounted": "true",
+          "productprice": "199EUR",
+        },
+      ]
+    };
+    $(document).ready(function () {
+      $(".items").slick({
+        infinite: false,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          }
+        ]
+      });
+      const data = json.items;
+      $.each(data, function () {
+        const div = document.createElement("div");
+        div.classList.add('productDiv');
+        const image = document.createElement("img");
+        image.src = this["imgsrc"];
+        const productName = document.createElement("p");
+        productName.innerHTML = this["productname"];
+        productName.classList.add("productName");
+        productPrice = document.createElement("p");
+        if (this["discounted"] === "true") {
+          productPrice.innerHTML = this["productprice"];
+          productPrice.classList.add("salePrice");
+          const oldPrice = document.createElement("p");
+          oldPrice.innerHTML = "was" + " " + this["productlistprice"];
+          oldPrice.classList.add("oldPrice");
+          const saleButton = document.createElement("button");
+          saleButton.innerHTML = "SALE";
+          div.appendChild(image);
+          div.appendChild(saleButton);
+          div.appendChild(productName);
+          div.appendChild(productPrice);
+          div.appendChild(oldPrice);
+        } else {
+          productPrice.innerHTML = this["productlistprice"];
+          productPrice.classList.add("currentPrice");
+          div.appendChild(image);
+          div.appendChild(productName);
+          div.appendChild(productPrice);
+        }
+        $(".items").slick('slickAdd', div);
+      });
+    });
+  </script>
+</body>
+</html>
